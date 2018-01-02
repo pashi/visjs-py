@@ -45,7 +45,15 @@ for route in routes:
         gws[name] = True
 
     name = "network-%sm%s" % (route['network'], route['netmask'])
-    label = "%sm%s" % (route['network'], route['netmask'])
+    network = route['network']
+    netmask = route['netmask']
+    label = ""
+    if network == "0.0.0.0" and netmask == "0.0.0.0":
+        label = "default gw"
+    if netmask == "255.255.255.255":
+        label = network
+    else:
+        label = "%sm%s" % (route['network'], route['netmask'])
     node2 = { 'name': name, 'label': label }
     vis.add_node(node2)
     vis.add_edge(node,node2)
