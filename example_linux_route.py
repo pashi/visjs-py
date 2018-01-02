@@ -35,10 +35,14 @@ me = socket.gethostname()
 hostnode = { 'name': "host-%s" % (me), 'label': me }
 vis.add_node(hostnode)
 
+gws={}
 for route in routes:
-    node = { 'name': "gw-%s" % (route['gateway']), 'label': route['gateway'] }
+    name = "gw-%s" % (route['gateway'])
+    node = { 'name': name, 'label': route['gateway'] }
     vis.add_node(node)
-    vis.add_edge(hostnode,node)
+    if not gws.has_key(name):
+        vis.add_edge(hostnode,node)
+        gws[name] = True
 
     name = "network-%sm%s" % (route['network'], route['netmask'])
     label = "%sm%s" % (route['network'], route['netmask'])
