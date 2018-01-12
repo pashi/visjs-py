@@ -1,0 +1,15 @@
+{
+"nodes": 
+[
+{ "name": "internet", "label": "internet", "shape": "dot", "color": "red" },
+{ "name": "router", "label": "cisco\nrouter", "shape": "circle", "color": "red" },
+{ "name": "firewall", "label": "cisco\nfirewall", "shape": "star", "color": "#FB7E81" },
+{ "name": "switch", "label": "hp\nswitch", "shape": "star", "color": "green" }
+],
+"edges":
+[
+{ "src": "switch", "dst": "firewall" },
+{ "src": "firewall", "dst": "router" },
+{ "src": "router", "dst": "internet" }
+]
+}
